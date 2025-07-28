@@ -1,5 +1,5 @@
 const fs = require("node:fs/promises");
-
+const path = require("path");
 exampleAppend = async () => {
   try {
     const content = "\n sorry i meant soup!";
@@ -11,7 +11,9 @@ exampleAppend = async () => {
 
 exampleRead = async () => {
   try {
-    const data = await fs.readFile("./test.txt", { encoding: "utf8" });
+    const data = await fs.readFile(path.join(__dirname, "/test.txt"), {
+      encoding: "utf8",
+    });
     console.log(data);
   } catch (e) {
     console.log(e);
