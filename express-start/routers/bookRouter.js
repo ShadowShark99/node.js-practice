@@ -1,12 +1,10 @@
 const { Router } = require("express");
 const bookRouter = Router();
+const { getBookById } = require("../controllers/bookController");
 
 //middle ware functions
 bookRouter.get("/", (req, res) => res.send("All Books"));
-bookRouter.get("/:bookID", (req, res) => {
-  const { bookID } = req.params;
-  res.send(`book ID: ${bookID}`);
-});
+bookRouter.get("/:bookID", getBookById);
 bookRouter.get("/:bookID/reserve", (req, res) => {
   const { bookID } = req.params;
   res.send(`Reserving ${bookID}`);

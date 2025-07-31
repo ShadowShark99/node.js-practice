@@ -7,4 +7,8 @@ indexRouter.get("/about", (req, res) => res.send("About Me, Hi!"));
 indexRouter.get("/contact", (req, res) => res.send("<h2>123456</h2>"));
 indexRouter.post("/contact", (req, res) => res.send("Posted"));
 
+indexRouter.use((req, res) => {
+  throw new Error("Oh no!");
+});
+
 module.exports = indexRouter;
