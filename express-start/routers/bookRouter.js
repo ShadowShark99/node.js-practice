@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const bookRouter = Router();
-const { getBookById } = require("../controllers/bookController");
+const { getBookById } = require("../controllers/bookController.js");
 
 //middle ware functions
 bookRouter.get("/", (req, res) => res.send("All Books"));
