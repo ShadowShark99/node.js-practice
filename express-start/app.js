@@ -29,6 +29,10 @@ app.get("/", (req, res) => {
   res.render("index", { links: links, users: users });
 });
 
+app.get("/about", (req, res) => {
+  res.render("about", { links: links, users: users });
+});
+
 //routing and controllers
 
 app.use("/authors", authorRouter);
