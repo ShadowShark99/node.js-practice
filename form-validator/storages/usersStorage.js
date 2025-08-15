@@ -6,9 +6,17 @@ class UsersStorage {
     this.id = 0;
   }
 
-  addUser({ firstName, lastName }) {
+  addUser({ firstName, lastName, email, age, bio }) {
     const id = this.id;
-    this.storage[id] = { id, firstName, lastName };
+    this.storage[id] = {
+      id,
+      firstName,
+      lastName,
+      email,
+      ...(age !== undefined && { age }),
+      ...(bio !== undefined && { bio }),
+    };
+    console.log(this.storage[id]);
     this.id++;
   }
 

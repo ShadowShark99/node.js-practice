@@ -34,20 +34,35 @@ const validateUser = [
     .withMessage(`Last name ${alphaErr}`)
     .isLength({ min: 1, max: 10 })
     .withMessage(`Last name ${lengthErr}`),
+  body("email").trim(),
+  body("age")
+    .optional({ checkFalsy: true })
+    .trim()
+    .isInt({ min: 18, max: 120 })
+    .withMessage(`Age must be a number between 18 and 120`),
+  body("bio")
+    .optional()
+    .trim()
+    .isLength({ min: 0, max: 200 })
+    .withMessage(`Bio needs to be under 200 characters`),
 ];
 
 exports.usersCreatePost = [
   validateUser,
   (req, res) => {
+    const { firstName, lastName, email, age, bio } = req.body;
+    console.log("validate?");
+    console.log(age);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log(errors);
       return res.status(400).render("createUser", {
         title: "Create User",
         errors: errors.array(),
       });
     }
-    const { firstName, lastName } = req.body;
-    usersStorage.addUser({ firstName, lastName });
+    
+    usersStorage.addUser({ firstName, lastName, email, age, bio });
     res.redirect("/");
   },
 ];
