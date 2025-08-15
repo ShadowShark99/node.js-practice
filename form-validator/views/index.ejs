@@ -35,5 +35,15 @@
       <% }); %> <% } %>
     </ul>
     <a href="/create">Create a user</a>
+    <h4>Find a user!</h4>
+    <form
+        action="/search"
+        method="GET"
+        style="display: inline"
+      >
+        <label for="search">Enter Name: </label>
+        <input type="text" name="search" id="search" />
+        <button type="submit">Search</button>
+      </form>
   </body>
 </html>

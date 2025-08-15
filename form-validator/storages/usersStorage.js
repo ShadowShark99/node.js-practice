@@ -20,6 +20,55 @@ class UsersStorage {
     this.id++;
   }
 
+  deleteUser(id) {
+    delete this.storage[id];
+  }
+
+  findUsers(name){
+    const users = [];
+    while(name.search(/W/) !== -1)
+    {
+      const idx = name.search(/W/);
+      name = name.substr(0, idx) + name.substr(idx + 1);
+    }
+    name = name.toLowerCase();
+    console.log("name is not constant");
+    for( let i = 0; i < this.id; i++)
+    {
+      const user = this.storage[i];
+      if(user)
+      {
+        let fullName = user.firstName + user.lastName;
+        fullName = fullName.toLowerCase();
+        let email = user.email.toLowerCase();
+        const searchLength = name.length;
+        const fLength = fullName.length;
+        const eLength = email.length;
+        let found = false;
+        for(let f = 0; f <= fLength - searchLength; f++)
+        {
+          if(fullName.substr(f, searchLength) === name)
+          {
+            users.push(user);
+            found = true;
+            break;
+          }
+        }
+        if(!found)
+          for(let e = 0; e <= eLength - searchLength; e++)
+          {
+            if(email.substr(e, searchLength) === name)
+            {
+              users.push(user);
+              break;
+            }
+          }
+
+      }
+    }
+    return users;
+  }
+
   getUsers() {
     return Object.values(this.storage);
   }
@@ -32,9 +81,7 @@ class UsersStorage {
     this.storage[id] = { id, firstName, lastName };
   }
 
-  deleteUser(id) {
-    delete this.storage[id];
-  }
+  
 }
 // Rather than exporting the class, we can export an instance of the class by instantiating it.
 // This ensures only one instance of this class can exist, also known as the "singleton" pattern.

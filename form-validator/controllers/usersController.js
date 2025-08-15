@@ -102,3 +102,19 @@ exports.usersDeletePost = (req, res) => {
   usersStorage.deleteUser(req.params.id);
   res.redirect("/");
 };
+
+exports.usersDeletePost = (req, res) => {
+  usersStorage.deleteUser(req.params.id);
+  res.redirect("/");
+};
+
+exports.usersSearchGet = (req, res) => {
+  console.log("poop");
+  const { search} = req.query;
+  const users = usersStorage.findUsers(search);
+  console.log(users);
+  res.render("index", {
+    title: "Found Users",
+    users,
+  });
+};
