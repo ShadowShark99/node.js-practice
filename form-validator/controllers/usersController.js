@@ -113,7 +113,7 @@ exports.usersSearchGet = (req, res) => {
   const { search} = req.query;
   const users = usersStorage.findUsers(search);
   console.log(users);
-  res.render("index", {
+  res.render("search", {
     title: "Found Users",
     users,
   });
