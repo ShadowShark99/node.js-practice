@@ -47,7 +47,9 @@ fs.readFile(filePath404, (err, data) => {
 app.get("/", (req, res) => res.end(pageIndex));
 app.get("/about", (req, res) => res.end(pageAbout));
 app.get("/contact-me", (req, res) => res.end(pageContact));
-app.use((req, res) => res.end(page404));
+app.get("{*splat}", (req, res) => {
+  res.end(page404);
+});
 
 const PORT2 = process.env.PORT || 3000;
 
