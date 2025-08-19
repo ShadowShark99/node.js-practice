@@ -1,0 +1,8 @@
+<% if(locals.users) { %>
+  <div>users: </div>
+  <div style="display: grid; ">
+    <% users.forEach((user) => { %>
+      <div style="margin-left: 20px; border: 1px solid black; width: 200px;"><%= user.username %></div>
+    <% });%>
+  </div>
+<% } %>

@@ -3,5 +3,12 @@ const db = require("../db/queries");
 exports.usersGet = async (req, res) => {
   const usernames = await db.getAllUsernames();
   console.log("Usernames: ", usernames);
-  res.send("Usernames: " + usernames.map(user => user.username).join(", "));
+  res.render("index", {
+    title: "All Users",
+    usernames,
+  });
 };
+
+exports.searchGet = async (req, res) => {
+  const {search} = req.query;
+}
