@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 
 const { Client } = require("pg");
+const {argv} = require('node:process');
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS usernames (
@@ -17,8 +18,11 @@ VALUES
 
 async function main() {
   console.log("seeding...");
+  let url = "postgresql://kaden@localhost:5432/top_users";
+  if (argv.length > 2)
+    url = argv[3];
   const client = new Client({
-    connectionString: "postgresql://kaden@localhost:5432/top_users",
+    connectionString: url,
   });
   await client.connect();
   await client.query(SQL);
