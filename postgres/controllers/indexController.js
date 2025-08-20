@@ -11,4 +11,9 @@ exports.usersGet = async (req, res) => {
 
 exports.searchGet = async (req, res) => {
   const {search} = req.query;
+  const usernames = await db.searchUsers(search);
+  console.log("Found Users: ", usernames);
+  res.render("search", {
+    users: usernames,
+  });
 }
