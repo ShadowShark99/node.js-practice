@@ -17,3 +17,8 @@ exports.searchGet = async (req, res) => {
     users: usernames,
   });
 }
+
+exports.deletePost = async (req, res) => {
+  await db.deleteUsers();
+  res.redirect("/");
+}

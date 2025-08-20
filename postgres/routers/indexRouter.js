@@ -4,6 +4,6 @@ const indexRouter = Router();
 
 indexRouter.get("/", indexController.usersGet);
 indexRouter.get("/search", indexController.searchGet);
-
+indexRouter.post("/delete", indexController.deletePost);
 
 module.exports = indexRouter;
