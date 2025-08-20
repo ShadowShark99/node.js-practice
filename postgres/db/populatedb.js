@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-
+require('dotenv').config();
 const { Client } = require("pg");
 const {argv} = require('node:process');
 
@@ -18,7 +18,7 @@ VALUES
 
 async function main() {
   console.log("seeding...");
-  let url = "postgresql://kaden@localhost:5432/top_users";
+  let url = `postgresql://${process.env.DB_USER}@localhost:5432/top_users`;
   if (argv.length > 2)
     url = argv[3];
   const client = new Client({
